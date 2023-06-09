@@ -2,7 +2,6 @@ import { prisma } from "@/db";
 import Link from "next/link";
 import React from "react";
 import TodoItem from "@/components/TodoItem";
-import { redirect } from "next/navigation";
 
 const getTodos = () => prisma.todo.findMany();
 
@@ -14,7 +13,6 @@ async function toggleTodo(id: string, complete: boolean) {
 async function deleteTodo(id: string) {
   "use server";
   await prisma.todo.delete({ where: { id } });
-  redirect("/");
 }
 
 const HomePage = async () => {
